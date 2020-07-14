@@ -1,11 +1,8 @@
-package org.launchcode.techjobs_oo.Tests;
+package org.launchcode.techjobs_oo.tests;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.launchcode.techjobs_oo.*;
-
-import java.lang.reflect.Field;
-import java.time.LocalDate;
 
 import static org.junit.Assert.*;
 
