@@ -1,7 +1,5 @@
 package org.launchcode.techjobs_oo;
 
-import java.lang.reflect.Field;
-import java.time.LocalDate;
 import java.util.Objects;
 
 public class Job {
@@ -15,7 +13,6 @@ public class Job {
     private PositionType positionType;
     private CoreCompetency coreCompetency;
 
-    // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
     public Job() {
         id = nextId;
         nextId++;
@@ -29,11 +26,6 @@ public class Job {
         this.positionType = positionType;
         this.coreCompetency = coreCompetency;
     }
-    //  other five fields. The second constructor should also call the first in order to initialize
-    //  the 'id' field.
-
-    // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
-    //  match.
 
     @Override
     public boolean equals(Object o) {
@@ -44,13 +36,28 @@ public class Job {
     }
 
     @Override
+    public String toString() {
+        boolean isNameEmpty = getName() == null || getName().equals("");
+        boolean isEmployerEmpty = getEmployer() == null || getEmployer().toString().equals("");
+        boolean isLocationEmpty = getLocation() == null || getLocation().toString().equals("");
+        boolean isPositionTypeEmpty = getPositionType() == null || getPositionType().toString().equals("");
+        boolean isCoreCompetencyEmpty = getCoreCompetency() == null || getCoreCompetency().toString().equals("");
+        boolean allNonIdFieldsEmpty = (isNameEmpty && isEmployerEmpty && isLocationEmpty && isPositionTypeEmpty && isCoreCompetencyEmpty);
+        String id = Integer.toString(getId());
+        String name = isNameEmpty ? "Data not available" : getName();
+        String employer =  isEmployerEmpty ? "Data not available" : getEmployer().toString();
+        String location =  isLocationEmpty ? "Data not available" : getLocation().toString();
+        String positionType = isPositionTypeEmpty  ? "Data not available" : getPositionType().toString();
+        String coreCompetency = isCoreCompetencyEmpty ? "Data not available" : getCoreCompetency().toString();
+        return !allNonIdFieldsEmpty ?
+                String.format("\nID: %s\nName: %s\nEmployer: %s\nLocation: %s\nPosition Type: %s\nCore Competency: %s\n", id, name, employer, location, positionType, coreCompetency)
+                : "\nOOPS! This job does not seem to exist.\n";
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(id);
     }
-
-    // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
-    //  and id.
-
 
     public String getName() {
         return name;
@@ -96,22 +103,4 @@ public class Job {
         return id;
     }
 
-
-
-    @Override
-    public String toString() {
-        boolean isNameEmpty = getName() == null || getName().equals("");
-        boolean isEmployerEmpty = getEmployer() == null || getEmployer().toString().equals("");
-        boolean isLocationEmpty = getLocation() == null || getLocation().toString().equals("");
-        boolean isPositionTypeEmpty = getPositionType() == null || getPositionType().toString().equals("");
-        boolean isCoreCompetencyEmpty = getCoreCompetency() == null || getCoreCompetency().toString().equals("");
-        boolean allNonIdFieldsEmpty = (isNameEmpty && isEmployerEmpty && isLocationEmpty && isPositionTypeEmpty && isCoreCompetencyEmpty);
-        String id = Integer.toString(getId());
-        String name = isNameEmpty ? "Data not available" : getName();
-        String employer =  isEmployerEmpty ? "Data not available" : getEmployer().toString();
-        String location =  isLocationEmpty ? "Data not available" : getLocation().toString();
-        String positionType = isPositionTypeEmpty  ? "Data not available" : getPositionType().toString();
-        String coreCompetency = isCoreCompetencyEmpty ? "Data not available" : getCoreCompetency().toString();
-        return !allNonIdFieldsEmpty ? String.format("\nID: %s\nName: %s\nEmployer: %s\nLocation: %s\nPosition Type: %s\nCore Competency: %s\n", id, name, employer, location, positionType, coreCompetency) : "\nOOPS! This job does not seem to exist.\n";
-    }
 }
