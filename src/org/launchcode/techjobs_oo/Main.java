@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
 
@@ -13,25 +15,16 @@ public class Main {
         Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         Job job2 = new Job("Web Developer", new Employer("LaunchCode"), new Location("St. Louis"), new PositionType("Front-end developer"), new CoreCompetency("JavaScript"));
         Job job3 = new Job("Ice cream taster", new Employer(""), new Location("Home"), new PositionType("UX"), new CoreCompetency("Taste"));
-        Job job4 = new Job(null, null, null, null, null);
+        Job job4 = new Job(null, null, null, null, new CoreCompetency(""));
         Job job5 = new Job("    ", null, new Location("     \n"), new PositionType("who cares"), new CoreCompetency("stuff"));
+        Job job6 = new Job();
 
-        ArrayList<Job> jobs = new ArrayList<>();
-        jobs.add(job1);
-        jobs.add(job2);
-        jobs.add(job3);
-        jobs.add(job4);
-        jobs.add(job5);
+        List<Job> jobs = Arrays.asList(job1, job2, job3, job4, job5, job6);
 
-//        String line;
-//        StringBuilder stringFromFile = new StringBuilder();
-//        BufferedReader fileRead = new BufferedReader(new FileReader( "./resources/file.txt" ));
-//        while((line = fileRead.readLine()) != null) {
-//            String asLine = line + "\n";
-//            stringFromFile.append(asLine);
-//        }
+
 
         for (Job job : jobs){
+            System.out.println("Job ID:" +job.getId());
             System.out.println(job);
         }
     }
