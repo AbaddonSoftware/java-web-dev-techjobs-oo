@@ -13,7 +13,7 @@ public class JobTest {
     Job jobWithFieldsSet;
     Job secondJobWithFieldsSet;
 
-    @Before public void initialize() {
+    @Before public void initializeTestData() {
         job1 = new Job();
         job2 = new Job();
         jobWithFieldsSet = new Job("Product Tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
@@ -65,12 +65,13 @@ public class JobTest {
 
     @Test
     public void testToStringPrintsFieldsAndData() {
-        String expected = "\n" + "ID: " + jobWithFieldsSet.getId()+"\n"+
-                          "Name: " + jobWithFieldsSet.getName()+"\n"+
-                          "Employer: " +jobWithFieldsSet.getEmployer().toString()+"\n"+
-                          "Location: " +jobWithFieldsSet.getLocation().toString()+"\n"+
-                          "Position Type: " +jobWithFieldsSet.getPositionType().toString()+"\n"+
-                          "Core Competency: " +jobWithFieldsSet.getCoreCompetency().toString()+"\n";
+        String expected = "\n" +
+                          "ID: " + jobWithFieldsSet.getId()+"\n"+
+                          "Name: " + "Product Tester"+"\n"+
+                          "Employer: " +"ACME"+"\n"+
+                          "Location: " +"Desert"+"\n"+
+                          "Position Type: " +"Quality Control"+"\n"+
+                          "Core Competency: " +"Persistence"+"\n";
         assertEquals(expected, jobWithFieldsSet.toString());
     }
 
