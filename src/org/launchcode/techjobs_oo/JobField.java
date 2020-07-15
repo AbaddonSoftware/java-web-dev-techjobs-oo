@@ -26,9 +26,7 @@ public abstract class JobField {
     }
 
     @Override
-    public String toString() {
-        return value;
-    }
+    public String toString() { return value; }
 
     @Override
     public int hashCode() {

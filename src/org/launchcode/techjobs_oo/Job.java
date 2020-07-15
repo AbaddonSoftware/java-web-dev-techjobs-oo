@@ -1,5 +1,7 @@
 package org.launchcode.techjobs_oo;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class Job {
@@ -27,6 +29,13 @@ public class Job {
         this.coreCompetency = coreCompetency;
     }
 
+    private String isEmptyOrNull(Object anObject) {
+        if(anObject != null) {
+            return !anObject.toString().matches("[\\s]*") ? anObject.toString() : "Data not available";
+        }
+        return "Data not available";
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -37,20 +46,22 @@ public class Job {
 
     @Override
     public String toString() {
-        boolean isNameEmpty = getName() == null || getName().equals("");
-        boolean isEmployerEmpty = getEmployer() == null || getEmployer().toString().equals("");
-        boolean isLocationEmpty = getLocation() == null || getLocation().toString().equals("");
-        boolean isPositionTypeEmpty = getPositionType() == null || getPositionType().toString().equals("");
-        boolean isCoreCompetencyEmpty = getCoreCompetency() == null || getCoreCompetency().toString().equals("");
-        boolean allNonIdFieldsEmpty = (isNameEmpty && isEmployerEmpty && isLocationEmpty && isPositionTypeEmpty && isCoreCompetencyEmpty);
         String id = Integer.toString(getId());
-        String name = isNameEmpty ? "Data not available" : getName();
-        String employer =  isEmployerEmpty ? "Data not available" : getEmployer().toString();
-        String location =  isLocationEmpty ? "Data not available" : getLocation().toString();
-        String positionType = isPositionTypeEmpty  ? "Data not available" : getPositionType().toString();
-        String coreCompetency = isCoreCompetencyEmpty ? "Data not available" : getCoreCompetency().toString();
-        return !allNonIdFieldsEmpty ?
-                String.format("\nID: %s\nName: %s\nEmployer: %s\nLocation: %s\nPosition Type: %s\nCore Competency: %s\n", id, name, employer, location, positionType, coreCompetency)
+        String name = isEmptyOrNull(getName());
+        String employer =  isEmptyOrNull(getEmployer());
+        String location =  isEmptyOrNull(getLocation());
+        String positionType = isEmptyOrNull(getPositionType());
+        String coreCompetency = isEmptyOrNull(getCoreCompetency());
+        List<String> allString = Arrays.asList(name, employer, location, positionType, coreCompetency);
+        boolean dataAvailable = !allString.stream().allMatch(aString -> aString.equals("Data not available"));
+        return  dataAvailable ?
+                String.format("\n" +
+                        "ID: %s\n" +
+                        "Name: %s\n" +
+                        "Employer: %s\n" +
+                        "Location: %s\n" +
+                        "Position Type: %s\n" +
+                        "Core Competency: %s\n", id, name, employer, location, positionType, coreCompetency)
                 : "\nOOPS! This job does not seem to exist.\n";
     }
 

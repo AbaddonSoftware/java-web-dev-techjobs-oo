@@ -33,7 +33,7 @@ public class JobTest {
         boolean isLocation = jobWithFieldsSet.getLocation() instanceof Location;
         boolean isPositionType = jobWithFieldsSet.getPositionType() instanceof PositionType;
         boolean isCoreCompetency = jobWithFieldsSet.getCoreCompetency() instanceof CoreCompetency;
-        boolean allFieldsProperClass = isNameString
+        boolean allFieldsOfProperClass = isNameString
                                      && isEmployer
                                      && isLocation
                                      && isPositionType
@@ -48,13 +48,13 @@ public class JobTest {
                                     && locationSetAsGiven
                                     && positionTypeSetAsGiven
                                     && coreCompetencySetAsGiven;
-        String msg = String.format("Fields match proper type?\nisName: %b, isEmployer: %b, isLocation: %b, isPositionType: %b, isCoreCompetency: %b,\n", isNameString, isEmployer, isLocation, isPositionType, isCoreCompetency);
-        msg += String.format("Fields set?\nnameSetAsGiven: %b, employerSetAsGiven: %b, locationSetAsGiven: %b, positionTypeSetAsGiven: %b, coreCompetencySetAsGiven: %b\n", nameSetAsGiven, employerSetAsGiven, locationSetAsGiven, positionTypeSetAsGiven, coreCompetencySetAsGiven);
-        assertTrue(msg, allFieldsProperClass && allFieldsSetAsGiven);
+        String msg = String.format("Fields match proper class?\nisName: %b, isEmployer: %b, isLocation: %b, isPositionType: %b, isCoreCompetency: %b,\n", isNameString, isEmployer, isLocation, isPositionType, isCoreCompetency);
+        msg += String.format("Fields set as input?\nnameSetAsGiven: %b, employerSetAsGiven: %b, locationSetAsGiven: %b, positionTypeSetAsGiven: %b, coreCompetencySetAsGiven: %b\n", nameSetAsGiven, employerSetAsGiven, locationSetAsGiven, positionTypeSetAsGiven, coreCompetencySetAsGiven);
+        assertTrue(msg, allFieldsOfProperClass && allFieldsSetAsGiven);
     }
 
     @Test
-    public void testJobsForEquality() {
+    public void testJobsForInequality() {
         assertNotEquals(jobWithFieldsSet, secondJobWithFieldsSet);
     }
 
@@ -77,13 +77,16 @@ public class JobTest {
     @Test
     public void testToStringEmptyFieldsPrintsDefaultString() {
         job1.setEmployer(new Employer("Abaddon Software"));
+        job1.setLocation(null);
+        job1.setCoreCompetency(new CoreCompetency("     "));
+        job1.setPositionType(new PositionType("         "));
         String expected = "\n" + "ID: " + job1.getId()+"\n"+
                 "Name: Data not available\n"+
                 "Employer: Abaddon Software\n"+
                 "Location: Data not available\n"+
                 "Position Type: Data not available\n"+
                 "Core Competency: Data not available\n";
-        assertEquals(expected, job1.toString());
+        assertEquals(job1.toString(), expected, job1.toString());
     }
 
     @Test
