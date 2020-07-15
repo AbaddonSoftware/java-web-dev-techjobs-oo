@@ -67,11 +67,11 @@ public class JobTest {
     public void testToStringPrintsFieldsAndData() {
         String expected = "\n" +
                           "ID: " + jobWithFieldsSet.getId()+"\n"+
-                          "Name: " + "Product Tester"+"\n"+
-                          "Employer: " +"ACME"+"\n"+
-                          "Location: " +"Desert"+"\n"+
-                          "Position Type: " +"Quality Control"+"\n"+
-                          "Core Competency: " +"Persistence"+"\n";
+                          "Name: Product Tester"+"\n"+
+                          "Employer: ACME"+"\n"+
+                          "Location: Desert"+"\n"+
+                          "Position Type: Quality Control"+"\n"+
+                          "Core Competency: Persistence"+"\n";
         assertEquals(expected, jobWithFieldsSet.toString());
     }
 
