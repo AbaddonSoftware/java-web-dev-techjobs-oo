@@ -3,13 +3,13 @@ package org.launchcode.techjobs_oo;
 import java.util.Objects;
 
 public abstract class JobField {
-    private int id;
+    private final int ID;
     private static int nextId = 1;
     private String value;
 
     public JobField() {
-        id = nextId;
-        nextId++;
+          ID = nextId;
+          nextId++;
     }
 
     public JobField(String value) {
@@ -18,23 +18,23 @@ public abstract class JobField {
     }
 
     @Override
+    public String toString() { return value; }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         JobField jobField = (JobField) o;
-        return getId() == jobField.getId();
+        return value.equals(jobField.value);
     }
-
-    @Override
-    public String toString() { return value; }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(ID);
     }
 
     public int getId() {
-        return id;
+        return ID;
     }
 
     public String getValue() {

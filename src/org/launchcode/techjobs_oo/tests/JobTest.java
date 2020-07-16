@@ -34,20 +34,20 @@ public class JobTest {
         boolean isPositionType = jobWithFieldsSet.getPositionType() instanceof PositionType;
         boolean isCoreCompetency = jobWithFieldsSet.getCoreCompetency() instanceof CoreCompetency;
         boolean allFieldsOfProperClass = isNameString
-                                     && isEmployer
-                                     && isLocation
-                                     && isPositionType
-                                     && isCoreCompetency;
+                                      && isEmployer
+                                      && isLocation
+                                      && isPositionType
+                                      && isCoreCompetency;
         boolean nameSetAsGiven = jobWithFieldsSet.getName().equals("Product Tester");
         boolean employerSetAsGiven = jobWithFieldsSet.getEmployer().toString().equals("ACME");
         boolean locationSetAsGiven = jobWithFieldsSet.getLocation().toString().equals("Desert");
         boolean positionTypeSetAsGiven = jobWithFieldsSet.getPositionType().toString().equals("Quality Control");
         boolean coreCompetencySetAsGiven = jobWithFieldsSet.getCoreCompetency().toString().equals("Persistence");
         boolean allFieldsSetAsGiven = nameSetAsGiven
-                                    && employerSetAsGiven
-                                    && locationSetAsGiven
-                                    && positionTypeSetAsGiven
-                                    && coreCompetencySetAsGiven;
+                                   && employerSetAsGiven
+                                   && locationSetAsGiven
+                                   && positionTypeSetAsGiven
+                                   && coreCompetencySetAsGiven;
         String msg = String.format("Fields match proper class?\nisName: %b, isEmployer: %b, isLocation: %b, isPositionType: %b, isCoreCompetency: %b,\n", isNameString, isEmployer, isLocation, isPositionType, isCoreCompetency);
         msg += String.format("Fields set as input?\nnameSetAsGiven: %b, employerSetAsGiven: %b, locationSetAsGiven: %b, positionTypeSetAsGiven: %b, coreCompetencySetAsGiven: %b\n", nameSetAsGiven, employerSetAsGiven, locationSetAsGiven, positionTypeSetAsGiven, coreCompetencySetAsGiven);
         assertTrue(msg, allFieldsOfProperClass && allFieldsSetAsGiven);
@@ -67,11 +67,11 @@ public class JobTest {
     public void testToStringPrintsFieldsAndData() {
         String expected = "\n" +
                           "ID: " + jobWithFieldsSet.getId()+"\n"+
-                          "Name: Product Tester"+"\n"+
-                          "Employer: ACME"+"\n"+
-                          "Location: Desert"+"\n"+
-                          "Position Type: Quality Control"+"\n"+
-                          "Core Competency: Persistence"+"\n";
+                          "Name: Product Tester\n"+
+                          "Employer: ACME\n"+
+                          "Location: Desert\n"+
+                          "Position Type: Quality Control\n"+
+                          "Core Competency: Persistence\n";
         assertEquals(expected, jobWithFieldsSet.toString());
     }
 
@@ -81,13 +81,13 @@ public class JobTest {
         job1.setLocation(null);
         job1.setCoreCompetency(new CoreCompetency("     "));
         job1.setPositionType(new PositionType("         "));
-        String expected = "\n" + "ID: " + job1.getId()+"\n"+
+        String expected = "\n" + "ID: "+job1.getId()+"\n"+
                 "Name: Data not available\n"+
                 "Employer: Abaddon Software\n"+
                 "Location: Data not available\n"+
                 "Position Type: Data not available\n"+
                 "Core Competency: Data not available\n";
-        assertEquals(job1.toString(), expected, job1.toString());
+        assertEquals(expected, job1.toString());
     }
 
     @Test

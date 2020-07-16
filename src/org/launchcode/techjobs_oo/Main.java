@@ -18,7 +18,6 @@ public class Main {
         List<Job> jobs = Arrays.asList(job1, job2, job3, job4, job5, job6);
 
 
-
         for (Job job : jobs){
             System.out.println("Job ID:" +job.getId());
             System.out.println(job);

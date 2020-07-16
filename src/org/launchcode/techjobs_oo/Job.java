@@ -6,9 +6,10 @@ import java.util.Objects;
 
 public class Job {
 
-    private int id;
+    private final int ID;
     private static int nextId = 1;
 
+    private final String NO_DATA = "Data not available";
     private String name;
     private Employer employer;
     private Location location;
@@ -16,7 +17,7 @@ public class Job {
     private CoreCompetency coreCompetency;
 
     public Job() {
-        id = nextId;
+        ID = nextId;
         nextId++;
     }
 
@@ -29,11 +30,11 @@ public class Job {
         this.coreCompetency = coreCompetency;
     }
 
-    private String isEmptyOrNull(Object anObject) {
-        if(anObject != null) {
-            return !anObject.toString().matches("[\\s]*") ? anObject.toString() : "Data not available";
-        }
-        return "Data not available";
+    private String dataAvailable(String aString) {
+        return Objects.nonNull(aString) && !aString.matches("[\\s]*") ? aString : NO_DATA;
+    }
+    private String dataAvailable(JobField aJobField) {
+        return Objects.nonNull(aJobField) && !aJobField.getValue().matches("[\\s]*") ? aJobField.getValue() : NO_DATA;
     }
 
     @Override
@@ -41,19 +42,19 @@ public class Job {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Job job = (Job) o;
-        return id == job.id;
+        return ID == job.ID;
     }
 
     @Override
     public String toString() {
         String id = Integer.toString(getId());
-        String name = isEmptyOrNull(getName());
-        String employer =  isEmptyOrNull(getEmployer());
-        String location =  isEmptyOrNull(getLocation());
-        String positionType = isEmptyOrNull(getPositionType());
-        String coreCompetency = isEmptyOrNull(getCoreCompetency());
-        List<String> allString = Arrays.asList(name, employer, location, positionType, coreCompetency);
-        boolean dataAvailable = !allString.stream().allMatch(aString -> aString.equals("Data not available"));
+        String name =  dataAvailable(this.name);
+        String employer =  dataAvailable(getEmployer());
+        String location =  dataAvailable(getLocation());
+        String positionType = dataAvailable(getPositionType());
+        String coreCompetency = dataAvailable(getCoreCompetency());
+        List<String> allStrings = Arrays.asList(name, employer, location, positionType, coreCompetency);
+        boolean dataAvailable = !allStrings.stream().allMatch(aString -> aString.equals(NO_DATA));
         return  dataAvailable ?
                 String.format("\n" +
                         "ID: %s\n" +
@@ -62,12 +63,12 @@ public class Job {
                         "Location: %s\n" +
                         "Position Type: %s\n" +
                         "Core Competency: %s\n", id, name, employer, location, positionType, coreCompetency)
-                : "\nOOPS! This job does not seem to exist.\n";
+                        : "\nOOPS! This job does not seem to exist.\n";
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(ID, name, employer, location, positionType, coreCompetency);
     }
 
     public String getName() {
@@ -111,7 +112,7 @@ public class Job {
     }
 
     public int getId() {
-        return id;
+        return ID;
     }
 
 }
