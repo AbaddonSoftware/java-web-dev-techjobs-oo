@@ -25,7 +25,7 @@ public abstract class JobField {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         JobField jobField = (JobField) o;
-        return value.equals(jobField.value);
+        return ID == jobField.ID;
     }
 
     @Override
