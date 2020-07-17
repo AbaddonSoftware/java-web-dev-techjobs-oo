@@ -1,13 +1,12 @@
 package org.launchcode.techjobs_oo;
 
 
-import javax.sound.sampled.FloatControl;
 
 public class Location extends JobField{
+    private static int nextId = 0;
 
     public Location(String value) {
-        super(value);
+        super(nextId++, value);
     }
-
 
 }

@@ -31,10 +31,10 @@ public class Job {
     }
 
     private String dataAvailable(String aString) {
-        return Objects.nonNull(aString) && !aString.matches("[\\s]*") ? aString : NO_DATA;
+        return aString != null && !aString.matches("[\\s]*") ? aString : NO_DATA;
     }
     private String dataAvailable(JobField aJobField) {
-        return Objects.nonNull(aJobField) && !aJobField.getValue().matches("[\\s]*") ? aJobField.getValue() : NO_DATA;
+        return aJobField != null && !aJobField.getValue().matches("[\\s]*") ? aJobField.getValue() : NO_DATA;
     }
 
     @Override

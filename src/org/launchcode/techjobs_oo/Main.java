@@ -15,6 +15,17 @@ public class Main {
         Job job5 = new Job("    ", null, new Location("     \n"), new PositionType("who cares"), new CoreCompetency("stuff"));
         Job job6 = new Job();
 
+//        Location aLocation = new Location("test");
+//        Employer anEmployer = new Employer("another");
+//        Location testLocation = new Location("again");
+//        Employer anotherEmployer = new Employer("rocks");
+//        Employer aTestEmployer = new Employer("doesn't matter");
+//        Location oneLocation = new Location("funny stuff");
+//        JobField[] tests = {aLocation, anEmployer, testLocation, anotherEmployer, aTestEmployer, oneLocation};
+//        for(JobField test : tests) {
+//            System.out.println(test.getValue() + " : " + test.getId());
+//        }
+
         List<Job> jobs = Arrays.asList(job1, job2, job3, job4, job5, job6);
 
         for (Job job : jobs){
