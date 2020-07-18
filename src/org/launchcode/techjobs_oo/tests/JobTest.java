@@ -48,8 +48,8 @@ public class JobTest {
                                    && locationSetAsGiven
                                    && positionTypeSetAsGiven
                                    && coreCompetencySetAsGiven;
-        String msg = String.format("Fields match proper class?\nisName: %b, isEmployer: %b, isLocation: %b, isPositionType: %b, isCoreCompetency: %b,\n", isNameString, isEmployer, isLocation, isPositionType, isCoreCompetency);
-        msg += String.format("Fields set as input?\nnameSetAsGiven: %b, employerSetAsGiven: %b, locationSetAsGiven: %b, positionTypeSetAsGiven: %b, coreCompetencySetAsGiven: %b\n", nameSetAsGiven, employerSetAsGiven, locationSetAsGiven, positionTypeSetAsGiven, coreCompetencySetAsGiven);
+        String msg = String.format("\nFields match proper class?\nisName: %b, isEmployer: %b, isLocation: %b, isPositionType: %b, isCoreCompetency: %b,\n", isNameString, isEmployer, isLocation, isPositionType, isCoreCompetency);
+        msg += String.format("\nFields set as input?\nnameSetAsGiven: %b, employerSetAsGiven: %b, locationSetAsGiven: %b, positionTypeSetAsGiven: %b, coreCompetencySetAsGiven: %b\n", nameSetAsGiven, employerSetAsGiven, locationSetAsGiven, positionTypeSetAsGiven, coreCompetencySetAsGiven);
         assertTrue(msg, allFieldsOfProperClass && allFieldsSetAsGiven);
     }
 

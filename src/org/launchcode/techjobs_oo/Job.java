@@ -49,12 +49,13 @@ public class Job {
     public String toString() {
         String id = Integer.toString(getId());
         String name =  dataAvailable(this.name);
-        String employer =  dataAvailable(getEmployer());
-        String location =  dataAvailable(getLocation());
-        String positionType = dataAvailable(getPositionType());
-        String coreCompetency = dataAvailable(getCoreCompetency());
+        String employer =  dataAvailable(this.employer);
+        String location =  dataAvailable(this.location);
+        String positionType = dataAvailable(this.positionType);
+        String coreCompetency = dataAvailable(this.coreCompetency);
         List<String> allStrings = Arrays.asList(name, employer, location, positionType, coreCompetency);
         boolean dataAvailable = !allStrings.stream().allMatch(aString -> aString.equals(NO_DATA));
+
         return  dataAvailable ?
                 String.format("\n" +
                         "ID: %s\n" +
